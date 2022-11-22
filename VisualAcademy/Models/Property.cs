@@ -5,7 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 namespace VisualAcademy.Models
 {
     [Table("Propertiy")]
-    public class Property
+    public partial class Property
     {
         [Key]
         public int Id { get; set; }
