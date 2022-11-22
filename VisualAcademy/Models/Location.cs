@@ -8,7 +8,7 @@ namespace VisualAcademy.Models
         [Key]
         public int Id { get; set; }
         [Display(Name = "Location Name")]
-        public string name { get; set; } = "";
+        public string Name { get; set; } = "";
         public bool Active { get; set; }
         public string Property { get; set; } = "";
         [Display(Name ="Property")]

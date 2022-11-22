@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using VisualAcademy.Data;
 using VisualAcademy.Models;
 
-namespace VisualAcademy.Pages.Acts.Locations
+namespace VisualAcademy.Pages.Acts.Sublocations
 {
     public class DeleteModel : PageModel
     {
@@ -20,40 +20,40 @@ namespace VisualAcademy.Pages.Acts.Locations
         }
 
         [BindProperty]
-      public Location Location { get; set; }
+      public Sublocation Sublocation { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Locations == null)
+            if (id == null || _context.Sublocations == null)
             {
                 return NotFound();
             }
 
-            var location = await _context.Locations.FirstOrDefaultAsync(m => m.Id == id);
+            var sublocation = await _context.Sublocations.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (location == null)
+            if (sublocation == null)
             {
                 return NotFound();
             }
             else 
             {
-                Location = location;
+                Sublocation = sublocation;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Locations == null)
+            if (id == null || _context.Sublocations == null)
             {
                 return NotFound();
             }
-            var location = await _context.Locations.FindAsync(id);
+            var sublocation = await _context.Sublocations.FindAsync(id);
 
-            if (location != null)
+            if (sublocation != null)
             {
-                Location = location;
-                _context.Locations.Remove(Location);
+                Sublocation = sublocation;
+                _context.Sublocations.Remove(Sublocation);
                 await _context.SaveChangesAsync();
             }
 

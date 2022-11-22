@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using VisualAcademy.Data;
 using VisualAcademy.Models;
 
-namespace VisualAcademy.Pages.Acts.Locations
+namespace VisualAcademy.Pages.Acts.Sublocations
 {
     public class DetailsModel : PageModel
     {
@@ -19,23 +19,23 @@ namespace VisualAcademy.Pages.Acts.Locations
             _context = context;
         }
 
-      public Location Location { get; set; }
+      public Sublocation Sublocation { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Locations == null)
+            if (id == null || _context.Sublocations == null)
             {
                 return NotFound();
             }
 
-            var location = await _context.Locations.FirstOrDefaultAsync(m => m.Id == id);
-            if (location == null)
+            var sublocation = await _context.Sublocations.FirstOrDefaultAsync(m => m.Id == id);
+            if (sublocation == null)
             {
                 return NotFound();
             }
             else 
             {
-                Location = location;
+                Sublocation = sublocation;
             }
             return Page();
         }

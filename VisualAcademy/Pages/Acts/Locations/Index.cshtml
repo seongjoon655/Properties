@@ -14,7 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Location[0].name)
+                @Html.DisplayNameFor(model => model.Location[0].Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Location[0].Active)
@@ -32,7 +32,7 @@
 @foreach (var item in Model.Location) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.name)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Active)
@@ -41,7 +41,25 @@
                 @Html.DisplayFor(modelItem => item.Property)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item!.PropertyRef!.Name)
+                    @{
+                        var propertyName = "";
+                        if (item.PropertyRef != null)
+                        {
+                            try
+                            {
+                                propertyName = item.PropertyRef?.Name ?? "(Unknown)";
+                            }
+                            catch (Exception)
+                            {
+                                propertyName = "(Unknown)";
+                            }
+                        }
+                        else
+                        {
+                            propertyName = "(Unknown)";
+                        }
+                    }
+                    @propertyName
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |

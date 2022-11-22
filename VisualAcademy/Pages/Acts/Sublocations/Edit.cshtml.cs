@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using VisualAcademy.Data;
 using VisualAcademy.Models;
 
-namespace VisualAcademy.Pages.Acts.Locations
+namespace VisualAcademy.Pages.Acts.Sublocations
 {
     public class EditModel : PageModel
     {
@@ -21,22 +21,22 @@ namespace VisualAcademy.Pages.Acts.Locations
         }
 
         [BindProperty]
-        public Location Location { get; set; } = default!;
+        public Sublocation Sublocation { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Locations == null)
+            if (id == null || _context.Sublocations == null)
             {
                 return NotFound();
             }
 
-            var location =  await _context.Locations.FirstOrDefaultAsync(m => m.Id == id);
-            if (location == null)
+            var sublocation =  await _context.Sublocations.FirstOrDefaultAsync(m => m.Id == id);
+            if (sublocation == null)
             {
                 return NotFound();
             }
-            Location = location;
-           ViewData["PropertyId"] = new SelectList(_context.Properties, "Id", "Id");
+            Sublocation = sublocation;
+           ViewData["LocationId"] = new SelectList(_context.Locations, "Id", "Id");
             return Page();
         }
 
@@ -49,7 +49,7 @@ namespace VisualAcademy.Pages.Acts.Locations
                 return Page();
             }
 
-            _context.Attach(Location).State = EntityState.Modified;
+            _context.Attach(Sublocation).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace VisualAcademy.Pages.Acts.Locations
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LocationExists(Location.Id))
+                if (!SublocationExists(Sublocation.Id))
                 {
                     return NotFound();
                 }
@@ -70,9 +70,9 @@ namespace VisualAcademy.Pages.Acts.Locations
             return RedirectToPage("./Index");
         }
 
-        private bool LocationExists(int id)
+        private bool SublocationExists(int id)
         {
-          return _context.Locations.Any(e => e.Id == id);
+          return _context.Sublocations.Any(e => e.Id == id);
         }
     }
 }
