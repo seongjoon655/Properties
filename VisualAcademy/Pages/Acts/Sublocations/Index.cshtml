@@ -38,7 +38,7 @@
                 @Html.DisplayFor(modelItem => item.SublocationName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Active)
+                @Html.DisplayFor(modelItem => item.Active)                    
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Location)
@@ -48,6 +48,7 @@
             </td>
             <td>
                     @{
+                       
                         var locationName = "";
                         if (item.LocationRef != null)
                         {
